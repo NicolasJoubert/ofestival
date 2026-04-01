@@ -12,4 +12,4 @@ cmds = [
 ]
 
 [start]
-cmd = "php bin/console doctrine:migrations:migrate --no-interaction --env=prod && NGINX_INCLUDE_DIR=$(grep -Eo '/etc/nginx/(conf\\.d|http\\.d)' /etc/nginx/nginx.conf | head -n1 || true) && NGINX_INCLUDE_DIR=${NGINX_INCLUDE_DIR:-/etc/nginx/conf.d} && mkdir -p \"$NGINX_INCLUDE_DIR\" && sed \"s/\\$PORT/${PORT:-8080}/g\" nginx.conf > \"$NGINX_INCLUDE_DIR/default.conf\" && php-fpm & nginx -g 'daemon off;'"
+cmd = "NGINX_INCLUDE_DIR=$(grep -Eo '/etc/nginx/(conf\\.d|http\\.d)' /etc/nginx/nginx.conf | head -n1 || true) && NGINX_INCLUDE_DIR=${NGINX_INCLUDE_DIR:-/etc/nginx/conf.d} && mkdir -p \"$NGINX_INCLUDE_DIR\" && sed \"s/\\$PORT/${PORT:-8080}/g\" nginx.conf > \"$NGINX_INCLUDE_DIR/default.conf\" && php-fpm & nginx -g 'daemon off;'"
